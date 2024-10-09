@@ -1,0 +1,23 @@
+models:
+  Post:
+    title: string:400
+    slug: string:400, unique
+    content: longtext
+    user_id: unsignedInteger
+    relationships: 
+      belongsTo: User
+
+controllers:
+  Post:
+    index:
+      query: all
+      render: post.index with:posts
+
+    store:
+      validate: title,slug,content,user_id
+      save: post
+      redirect: post.index
+
+    show:
+      find: user.id
+      render: post.show with:post
