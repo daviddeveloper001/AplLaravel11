@@ -29,7 +29,8 @@ class PostController extends Controller
 
     public function show(Request $request, Post $post): View
     {
-        $user = User::find($post);
+
+        $post = $this->postServices->getPostById($post);
 
         return view('post.show', compact('post'));
     }
